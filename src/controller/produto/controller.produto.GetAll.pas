@@ -21,20 +21,20 @@ implementation
 procedure TControllerProdutoGetAll.getAll(Req: THorseRequest;
   Res: THorseResponse; Next: TProc);
 var
-  cli: TModelProdutoGetAll;
+  prod: TModelProdutoGetAll;
   qry: TFDQuery;
   erro: string;
   arrayProdutos: TJSONArray;
 begin
   try
-    cli := TModelProdutoGetAll.Create;
+    prod := TModelProdutoGetAll.Create;
   except
     res.Send('Erro ao conectar com o banco').Status(500);
     exit;
   end;
 
   try
-    qry := cli.getAll('', erro);
+    qry := prod.getAll('', erro);
 
     arrayProdutos := qry.ToJSONArray();
 
@@ -42,7 +42,7 @@ begin
 
   finally
     qry.Free;
-    cli.Free;
+    prod.Free;
   end;
 end;
 

@@ -20,7 +20,9 @@ uses
   controller.cliente.UpdateById in 'src\controller\cliente\controller.cliente.UpdateById.pas',
   controller.cliente.DeleteById in 'src\controller\cliente\controller.cliente.DeleteById.pas',
   model.produto.GetAll in 'src\model\produto\model.produto.GetAll.pas',
-  controller.produto.GetAll in 'src\controller\produto\controller.produto.GetAll.pas';
+  controller.produto.GetAll in 'src\controller\produto\controller.produto.GetAll.pas',
+  model.produto.GetById in 'src\model\produto\model.produto.GetById.pas',
+  controller.produto.GetById in 'src\controller\produto\controller.produto.GetById.pas';
 
 begin
   THorse.Use(Jhonson());
