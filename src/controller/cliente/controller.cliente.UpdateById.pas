@@ -132,7 +132,7 @@ begin
       cli.RAMOID := body.GetValue<Integer>('ramoid', 0);
       cli.NCARTAO := body.GetValue<Integer>('ncartao', 0);
 
-      cli.doProcedure('A', erro);
+      cli.doProcedure('A', 'alterar', erro);
 
       if erro <> '' then
         raise Exception.Create(erro);

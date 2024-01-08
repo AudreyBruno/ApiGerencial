@@ -101,10 +101,7 @@ type
     FID: Integer;
 
     public
-      constructor Create;
-      destructor Destroy;
-
-      function doProcedure(lcOpr: string; out erro: string): Boolean;
+      function doProcedure(lcOpr, Opr: string; out erro: string): Boolean;
       function Gerador: Integer; override;
 
       property NOME: string read FNOME write FNOME;
@@ -207,24 +204,12 @@ implementation
 
 { TModelClienteCreateRecord }
 
-constructor TModelClienteDoProcedure.Create;
-begin
-
-  inherited;
-end;
-
-destructor TModelClienteDoProcedure.Destroy;
-begin
-
-  inherited;
-end;
-
 function TModelClienteDoProcedure.Gerador: Integer;
 begin
   result := inherited doGerador('GEN_CLIENTE_ID');
 end;
 
-function TModelClienteDoProcedure.doProcedure(lcOpr: string; out erro: string): Boolean;
+function TModelClienteDoProcedure.doProcedure(lcOpr, Opr: string; out erro: string): Boolean;
 var
   qry : TFDQuery;
   PREPRESENTANTEID, PRAMOID: string;
@@ -367,7 +352,7 @@ begin
     Result := true;
   except on ex:exception do
     begin
-      erro := 'Erro cliente: ' + ex.Message;
+      erro := 'Erro ao ' + Opr + ' cliente: ' + ex.Message;
       Result := false;
     end;
   end;

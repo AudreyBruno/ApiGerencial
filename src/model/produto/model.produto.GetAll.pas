@@ -1,4 +1,4 @@
-unit model.cliente.GetAll;
+unit model.produto.GetAll;
 
 interface
 
@@ -6,7 +6,7 @@ uses
   FireDAC.Comp.Client, Data.DB, System.SysUtils, model.connection, model.principal;
 
 type
-  TModelClienteGetAll = class(TModelPrincipal)
+  TModelProdutoGetAll = class(TModelPrincipal)
     private
 
     public
@@ -15,9 +15,10 @@ type
 
 implementation
 
-{ TGetAll }
+{ TModelProdutoGetAll }
 
-function TModelClienteGetAll.getAll(order_by: string; out erro: string): TFDQuery;
+function TModelProdutoGetAll.getAll(order_by: string;
+  out erro: string): TFDQuery;
 var
   qry : TFDQuery;
 begin
@@ -29,10 +30,7 @@ begin
       begin
         Active := false;
         SQL.Clear;
-        SQL.Add('SELECT c.id, c.nome, c.fantasia, ci.nome, ci.uf, c.endereco, c.bairro, c.numero, c.complemento,' +
-        ' c.cep, c.celular, c.telefone, c.tipopessoa, c.cpf, c.cnpj, c.inscestadual, c.rg FROM cliente c');
-        SQL.Add('INNER JOIN cidade ci ON c.cidadeid = ci.id');
-        SQL.Add('WHERE 1 = 1');
+        SQL.Add('SELECT * FROM produto WHERE 1 = 1');
 
         if order_by = '' then
           SQL.Add('ORDER BY ID')
@@ -46,7 +44,7 @@ begin
     Result := qry;
   except on ex:exception do
     begin
-      erro := 'Erro ao consultar clientes: ' + ex.Message;
+      erro := 'Erro ao consultar produtos: ' + ex.Message;
       Result := nil;
     end;
   end;

@@ -13,11 +13,6 @@ type
       constructor Create;
       destructor Destroy;
 
-      function getAll(order_by: string; out erro: string): TFDQuery;
-      function getById(out erro: string): TFDQuery;
-      function deleteById(out erro: string): Boolean;
-      function doProcedure(lcOpr: string; out erro: string): Boolean;
-
       function doGerador(lcGerador: String): Integer; virtual;
       function Gerador: Integer; virtual; abstract;
   end;
@@ -54,26 +49,6 @@ begin
     qry.Close;
     FreeAndNil(qry);
   end;
-end;
-
-function TModelPrincipal.doProcedure(lcOpr: string; out erro: string): Boolean;
-begin
-
-end;
-
-function TModelPrincipal.deleteById(out erro: string): Boolean;
-begin
-
-end;
-
-function TModelPrincipal.getAll(order_by: string; out erro: string): TFDQuery;
-begin
-
-end;
-
-function TModelPrincipal.getById(out erro: string): TFDQuery;
-begin
-
 end;
 
 end.

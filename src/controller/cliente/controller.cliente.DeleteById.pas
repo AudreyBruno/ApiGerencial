@@ -39,7 +39,7 @@ begin
 
       cli.EMPRESAID := body.GetValue<Integer>('empresaid', 1);
 
-      if NOT cli.doProcedure('E', erro) then
+      if NOT cli.doProcedure('E', 'deletar', erro) then
         raise Exception.Create(erro);
 
     except on ex:exception do

@@ -18,12 +18,15 @@ uses
   model.cliente.doProcedure in 'src\model\cliente\model.cliente.doProcedure.pas',
   controller.cliente.CreateRecord in 'src\controller\cliente\controller.cliente.CreateRecord.pas',
   controller.cliente.UpdateById in 'src\controller\cliente\controller.cliente.UpdateById.pas',
-  controller.cliente.DeleteById in 'src\controller\cliente\controller.cliente.DeleteById.pas';
+  controller.cliente.DeleteById in 'src\controller\cliente\controller.cliente.DeleteById.pas',
+  model.produto.GetAll in 'src\model\produto\model.produto.GetAll.pas',
+  controller.produto.GetAll in 'src\controller\produto\controller.produto.GetAll.pas';
 
 begin
   THorse.Use(Jhonson());
 
   routes.rotasCliente;
+  routes.rotasProduto;
 
   THorse.Listen(9000);
 end.

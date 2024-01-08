@@ -11,9 +11,6 @@ type
     FID_CLIENTE: Integer;
 
     public
-      constructor Create;
-      destructor Destroy;
-
       property ID_CLIENTE : Integer read FID_CLIENTE write FID_CLIENTE;
 
       function getById(out erro: string): TFDQuery;
@@ -22,18 +19,6 @@ type
 implementation
 
 { TModelGetAll }
-
-constructor TModelClienteGetById.Create;
-begin
-
-  inherited;
-end;
-
-destructor TModelClienteGetById.Destroy;
-begin
-
-  inherited;
-end;
 
 function TModelClienteGetById.getById(out erro: string): TFDQuery;
 var
