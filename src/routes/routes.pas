@@ -4,7 +4,8 @@ interface
 
 uses
   Horse, controller.cliente.GetAll, controller.cliente.GetById, controller.cliente.CreateRecord,
-  controller.cliente.UpdateById, controller.cliente.DeleteById, controller.produto.GetAll, controller.produto.GetById;
+  controller.cliente.UpdateById, controller.cliente.DeleteById, controller.produto.GetAll,
+  controller.produto.GetById, controller.produto.CreateRecord;
 
 procedure rotasCliente;
 procedure rotasProduto;
@@ -30,9 +31,11 @@ procedure rotasProduto;
 var
   GetAll: TControllerProdutoGetAll;
   GetById: TControllerProdutoGetById;
+  CreateRecord: TControllerProdutoCreateRecord;
 begin
   THorse.Get('/produto', GetAll.getAll);
   THorse.Get('/produto/:id', GetById.getById);
+  THorse.Post('/produto', CreateRecord.CreateRecord);
 end;
 
 end.
