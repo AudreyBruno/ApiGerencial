@@ -185,6 +185,7 @@
         <DCCReference Include="src\controller\produto\controller.produto.GetAll.pas"/>
         <DCCReference Include="src\model\produto\model.produto.GetById.pas"/>
         <DCCReference Include="src\controller\produto\controller.produto.GetById.pas"/>
+        <DCCReference Include="src\model\produto\model.produto.doProcedure.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

@@ -22,7 +22,8 @@ uses
   model.produto.GetAll in 'src\model\produto\model.produto.GetAll.pas',
   controller.produto.GetAll in 'src\controller\produto\controller.produto.GetAll.pas',
   model.produto.GetById in 'src\model\produto\model.produto.GetById.pas',
-  controller.produto.GetById in 'src\controller\produto\controller.produto.GetById.pas';
+  controller.produto.GetById in 'src\controller\produto\controller.produto.GetById.pas',
+  model.produto.doProcedure in 'src\model\produto\model.produto.doProcedure.pas';
 
 begin
   THorse.Use(Jhonson());
