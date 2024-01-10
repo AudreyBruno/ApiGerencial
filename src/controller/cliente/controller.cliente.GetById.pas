@@ -3,7 +3,7 @@ unit controller.cliente.GetById;
 interface
 
 uses
-  Horse, System.JSON, System.SysUtils, FireDAC.Comp.Client, Data.DB, DataSet.Serialize, controller.principal,
+  Horse, System.JSON, System.SysUtils, FireDAC.Comp.Client, Data.DB, controller.principal,
   model.cliente.GetById;
 
 type
@@ -22,8 +22,6 @@ procedure TControllerClienteGetById.getById(Req: THorseRequest; Res: THorseRespo
   Next: TProc);
 var
   cli: TModelClienteGetById;
-  qry: TFDQuery;
-  erro: string;
   objCliente: TJSONObject;
 begin
   try

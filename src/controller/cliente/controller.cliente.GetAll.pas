@@ -3,7 +3,7 @@ unit controller.cliente.GetAll;
 interface
 
 uses
-  Horse, System.JSON, System.SysUtils, FireDAC.Comp.Client, Data.DB, DataSet.Serialize, controller.principal,
+  Horse, System.JSON, System.SysUtils, FireDAC.Comp.Client, Data.DB, controller.principal,
   model.cliente.GetAll;
 
 type
@@ -22,8 +22,9 @@ procedure TControllerClienteGetAll.getAll(Req: THorseRequest; Res: THorseRespons
   Next: TProc);
 var
   cli: TModelClienteGetAll;
-  erro, order: string;
   arrayClientes: TJSONArray;
+
+  order: string;
 begin
   try
     try
