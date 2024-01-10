@@ -22,26 +22,22 @@ procedure TControllerClienteGetAll.getAll(Req: THorseRequest; Res: THorseRespons
   Next: TProc);
 var
   cli: TModelClienteGetAll;
-  qry: TFDQuery;
-  erro: string;
+  erro, order: string;
   arrayClientes: TJSONArray;
 begin
   try
-    cli := TModelClienteGetAll.Create;
-  except
-    res.Send('Erro ao conectar com o banco').Status(500);
-    exit;
-  end;
+    try
+      cli := TModelClienteGetAll.Create;
 
-  try
-    qry := cli.getAll('', erro);
+      order := Req.Query['order'];
 
-    arrayClientes := qry.ToJSONArray();
+      arrayClientes := cli.getAll(order);
 
-    res.Send<TJSONArray>(arrayClientes);
-
+      Res.Send(arrayClientes).Status(200);
+    except on ex:exception do
+      Res.Send(ex.Message).Status(500);
+    end;
   finally
-    qry.Free;
     cli.Free;
   end;
 end;
