@@ -27,26 +27,17 @@ var
   objCliente: TJSONObject;
 begin
   try
-    cli := TModelClienteGetById.Create;
-    cli.ID_CLIENTE := Req.Params['id'].ToInteger;
-  except
-    res.Send('Erro ao conectar com o banco').Status(500);
-    exit;
-  end;
+    try
+      cli := TModelClienteGetById.Create;
+      cli.ID_CLIENTE := Req.Params['id'].ToInteger;
 
-  try
-    qry := cli.getById(erro);
+      objCliente := cli.getById;
 
-    if qry.RecordCount > 0 then
-      begin
-        objCliente := qry.ToJSONObject();
-        res.Send<TJSONObject>(objCliente);
-      end
-    else
-      Res.Send('Cliente não encontrado').Status(404);
-
+      Res.Send(objCliente).Status(200);
+    except on ex:exception do
+      Res.Send(ex.Message).Status(500);
+    end;
   finally
-    qry.Free;
     cli.Free;
   end;
 end;
