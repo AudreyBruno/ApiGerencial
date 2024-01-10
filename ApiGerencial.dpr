@@ -27,13 +27,15 @@ uses
   controller.produto.CreateRecord in 'src\controller\produto\controller.produto.CreateRecord.pas',
   controller.produto.UpdateById in 'src\controller\produto\controller.produto.UpdateById.pas',
   controller.produto.DeleteById in 'src\controller\produto\controller.produto.DeleteById.pas',
-  model.venda.GetAll in 'src\model\venda\model.venda.GetAll.pas';
+  model.venda.GetAll in 'src\model\venda\model.venda.GetAll.pas',
+  controller.venda.GetAll in 'src\controller\venda\controller.venda.GetAll.pas';
 
 begin
   THorse.Use(Jhonson());
 
   routes.rotasCliente;
   routes.rotasProduto;
+  routes.rotasVenda;
 
   THorse.Listen(9000);
 end.

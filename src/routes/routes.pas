@@ -6,10 +6,11 @@ uses
   Horse, controller.cliente.GetAll, controller.cliente.GetById, controller.cliente.CreateRecord,
   controller.cliente.UpdateById, controller.cliente.DeleteById, controller.produto.GetAll,
   controller.produto.GetById, controller.produto.CreateRecord, controller.produto.UpdateById,
-  controller.produto.DeleteById;
+  controller.produto.DeleteById, controller.venda.GetAll;
 
 procedure rotasCliente;
 procedure rotasProduto;
+procedure rotasVenda;
 
 implementation
 
@@ -41,6 +42,21 @@ begin
   THorse.Post('/produto', CreateRecord.CreateRecord);
   THorse.Put('/produto/:id', UpdateById.updateById);
   THorse.Delete('/produto/:id', DeleteById.deleteById);
+end;
+
+procedure rotasVenda;
+var
+  GetAll: TControllerVendaGetAll;
+  //GetById: TControllerVendaGetById;
+  //CreateRecord: TControllerVendaCreateRecord;
+  //UpdateById: TControllerVendaUpdateById;
+  //DeleteById: TControllerVendaDeleteById;
+begin
+  THorse.Get('/venda', GetAll.getAll);
+  //THorse.Get('/venda/:id', GetById.getById);
+  //THorse.Post('/venda', CreateRecord.CreateRecord);
+  //THorse.Put('/venda/:id', UpdateById.updateById);
+  //THorse.Delete('/venda/:id', DeleteById.deleteById);
 end;
 
 end.
