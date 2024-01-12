@@ -6,7 +6,7 @@ uses
   Horse, controller.cliente.GetAll, controller.cliente.GetById, controller.cliente.CreateRecord,
   controller.cliente.UpdateById, controller.cliente.DeleteById, controller.produto.GetAll,
   controller.produto.GetById, controller.produto.CreateRecord, controller.produto.UpdateById,
-  controller.produto.DeleteById, controller.venda.GetAll;
+  controller.produto.DeleteById, controller.venda.GetAll, controller.venda.GetById;
 
 procedure rotasCliente;
 procedure rotasProduto;
@@ -47,13 +47,13 @@ end;
 procedure rotasVenda;
 var
   GetAll: TControllerVendaGetAll;
-  //GetById: TControllerVendaGetById;
+  GetById: TControllerVendaGetById;
   //CreateRecord: TControllerVendaCreateRecord;
   //UpdateById: TControllerVendaUpdateById;
   //DeleteById: TControllerVendaDeleteById;
 begin
   THorse.Get('/venda', GetAll.getAll);
-  //THorse.Get('/venda/:id', GetById.getById);
+  THorse.Get('/venda/:id', GetById.getById);
   //THorse.Post('/venda', CreateRecord.CreateRecord);
   //THorse.Put('/venda/:id', UpdateById.updateById);
   //THorse.Delete('/venda/:id', DeleteById.deleteById);

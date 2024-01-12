@@ -3,49 +3,42 @@ unit model.venda.GetAll;
 interface
 
 uses
-  FireDAC.Comp.Client, Data.DB, System.SysUtils, model.connection, model.principal;
+  System.JSON, DataSet.Serialize, FireDAC.Comp.Client, Data.DB, System.SysUtils, model.connection, model.principal;
 
 type
   TModelVendaGetAll = class(TModelPrincipal)
     private
 
     public
-      function getAll(order_by: string; out erro: string): TFDQuery;
+      function getAll(order_by: string): TJsonArray;
   end;
 
 implementation
 
 { TModelVendaGetAll }
 
-function TModelVendaGetAll.getAll(order_by: string; out erro: string): TFDQuery;
+function TModelVendaGetAll.getAll(order_by: string): TJsonArray;
 var
   qry : TFDQuery;
 begin
   try
     qry := TFDQuery.Create(nil);
-    qry.Connection := Model.Connection.FConnection;
+    qry.Connection := model.connection.FConnection;
 
-    with qry do
-      begin
-        Active := false;
-        SQL.Clear;
-        SQL.Add('SELECT * FROM VENDA WHERE 1 = 1');
+    qry.Active := false;
+    qry.SQL.Clear;
+    qry.SQL.Add('SELECT * FROM venda WHERE 1 = 1');
 
-        if order_by = '' then
-          SQL.Add('ORDER BY ID')
-        else
-          SQL.Add('ORDER BY ' + order_by);
+    if order_by = '' then
+      qry.SQL.Add('ORDER BY ID')
+    else
+      qry.SQL.Add('ORDER BY ' + order_by);
 
-        Active := true;
-      end;
+    qry.Active := true;
 
-    erro := '';
-    Result := qry;
-  except on ex:exception do
-    begin
-      erro := 'Erro ao consultar vendas: ' + ex.Message;
-      Result := nil;
-    end;
+    Result := qry.ToJSONArray();
+  finally
+    qry.Free;
   end;
 end;
 

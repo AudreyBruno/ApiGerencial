@@ -1,13 +1,13 @@
-unit controller.produto.GetById;
+unit controller.venda.GetById;
 
 interface
 
 uses
   Horse, System.JSON, System.SysUtils, FireDAC.Comp.Client, Data.DB, controller.principal,
-  model.produto.GetById;
+  model.venda.GetById;
 
 type
-  TControllerProdutoGetById = class(TControllerPrincipal)
+  TControllerVendaGetById = class(TControllerPrincipal)
     private
 
     public
@@ -16,27 +16,27 @@ type
 
 implementation
 
-{ TControllerClienteGetById }
+{ TControllerVendaGetById }
 
-procedure TControllerProdutoGetById.getById(Req: THorseRequest;
+procedure TControllerVendaGetById.getById(Req: THorseRequest;
   Res: THorseResponse; Next: TProc);
 var
-  prod: TModelProdutoGetById;
+  venda: TModelVendaGetById;
   objProduto: TJSONObject;
 begin
   try
     try
-      prod := TModelProdutoGetById.Create;
-      prod.ID_PRODUTO := Req.Params['id'].ToInteger;
+      venda := TModelVendaGetById.Create;
+      venda.ID_VENDA := Req.Params['id'].ToInteger;
 
-      objProduto := prod.getById;
+      objProduto := venda.getById;
 
       Res.Send(objProduto).Status(200);
     except on ex:exception do
       Res.Send(ex.Message).Status(500);
     end;
   finally
-    prod.Free;
+    venda.Free;
   end;
 end;
 

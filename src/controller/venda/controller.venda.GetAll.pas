@@ -3,7 +3,7 @@ unit controller.venda.GetAll;
 interface
 
 uses
-  Horse, System.JSON, System.SysUtils, FireDAC.Comp.Client, Data.DB, DataSet.Serialize, controller.principal,
+  Horse, System.JSON, System.SysUtils, FireDAC.Comp.Client, Data.DB, controller.principal,
   model.venda.GetAll;
 
 type
@@ -22,26 +22,23 @@ procedure TControllerVendaGetAll.getAll(Req: THorseRequest; Res: THorseResponse;
   Next: TProc);
 var
   venda: TModelVendaGetAll;
-  qry: TFDQuery;
-  erro: string;
-  arrayProdutos: TJSONArray;
+  arrayVendas: TJSONArray;
+
+  order: string;
 begin
   try
-    venda := TModelVendaGetAll.Create;
-  except
-    res.Send('Erro ao conectar com o banco').Status(500);
-    exit;
-  end;
+    try
+      venda := TModelVendaGetAll.Create;
 
-  try
-    qry := venda.getAll('', erro);
+      order := Req.Query['order'];
 
-    arrayProdutos := qry.ToJSONArray();
+      arrayVendas := venda.getAll(order);
 
-    res.Send<TJSONArray>(arrayProdutos);
-
+      Res.Send(arrayVendas).Status(200);
+    except on ex:exception do
+      Res.Send(ex.Message).Status(500);
+    end;
   finally
-    qry.Free;
     venda.Free;
   end;
 end;

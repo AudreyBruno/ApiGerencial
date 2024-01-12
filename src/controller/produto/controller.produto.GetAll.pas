@@ -3,7 +3,7 @@ unit controller.produto.GetAll;
 interface
 
 uses
-  Horse, System.JSON, System.SysUtils, FireDAC.Comp.Client, Data.DB, DataSet.Serialize, controller.principal,
+  Horse, System.JSON, System.SysUtils, FireDAC.Comp.Client, Data.DB, controller.principal,
   model.produto.GetAll;
 
 type
@@ -22,26 +22,23 @@ procedure TControllerProdutoGetAll.getAll(Req: THorseRequest;
   Res: THorseResponse; Next: TProc);
 var
   prod: TModelProdutoGetAll;
-  qry: TFDQuery;
-  erro: string;
   arrayProdutos: TJSONArray;
+
+  order: string;
 begin
   try
-    prod := TModelProdutoGetAll.Create;
-  except
-    res.Send('Erro ao conectar com o banco').Status(500);
-    exit;
-  end;
+    try
+      prod := TModelProdutoGetAll.Create;
 
-  try
-    qry := prod.getAll('', erro);
+      order := Req.Query['order'];
 
-    arrayProdutos := qry.ToJSONArray();
+      arrayProdutos := prod.getAll(order);
 
-    res.Send<TJSONArray>(arrayProdutos);
-
+      Res.Send(arrayProdutos).Status(200);
+    except on ex:exception do
+      Res.Send(ex.Message).Status(500);
+    end;
   finally
-    qry.Free;
     prod.Free;
   end;
 end;

@@ -28,7 +28,9 @@ uses
   controller.produto.UpdateById in 'src\controller\produto\controller.produto.UpdateById.pas',
   controller.produto.DeleteById in 'src\controller\produto\controller.produto.DeleteById.pas',
   model.venda.GetAll in 'src\model\venda\model.venda.GetAll.pas',
-  controller.venda.GetAll in 'src\controller\venda\controller.venda.GetAll.pas';
+  controller.venda.GetAll in 'src\controller\venda\controller.venda.GetAll.pas',
+  model.venda.GetById in 'src\model\venda\model.venda.GetById.pas',
+  controller.venda.GetById in 'src\controller\venda\controller.venda.GetById.pas';
 
 begin
   THorse.Use(Jhonson());

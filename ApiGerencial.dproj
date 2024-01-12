@@ -191,6 +191,8 @@
         <DCCReference Include="src\controller\produto\controller.produto.DeleteById.pas"/>
         <DCCReference Include="src\model\venda\model.venda.GetAll.pas"/>
         <DCCReference Include="src\controller\venda\controller.venda.GetAll.pas"/>
+        <DCCReference Include="src\model\venda\model.venda.GetById.pas"/>
+        <DCCReference Include="src\controller\venda\controller.venda.GetById.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
